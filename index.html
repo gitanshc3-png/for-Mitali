@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>A Letter For Mitali 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg-color: #fff0f3;
+    --primary-red: #ff4d6d;
+    --secondary-pink: #ffb3c1;
+    --dark-pink: #c9184a;
+    --text-color: #590d22;
+  }
+
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; }
+
+  body {
+    height: 100vh;
+    font-family: "Press Start 2P", cursive;
+    background: var(--bg-color);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .media-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 15px 0;
+  }
+
+  /* VIDEO STYLING */
+  .pixel-video {
+    width: 200px;
+    height: auto;
+    border: 3px solid var(--text-color);
+    background: #000;
+    /* This creates the pixelated effect for the video */
+    image-rendering: pixelated; 
+  }
+
+  .heart {
+    position: absolute;
+    color: var(--primary-red);
+    font-size: 14px;
+    animation: floatUp linear infinite;
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  @keyframes floatUp {
+    0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+    20% { opacity: 0.8; }
+    100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+  }
+
+  .screen {
+    position: absolute;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .envelope-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .envelope-container:hover, .envelope-container:active { transform: scale(1.1); }
+
+  .envelope {
+    width: 240px;
+    height: 150px;
+    background: #ffccd5;
+    border: 4px solid #d94b5c;
+    position: relative;
+    background-image: 
+      linear-gradient(30deg, #f5a9a1 40%, transparent 40.5%),
+      linear-gradient(-30deg, #f5a9a1 40%, transparent 40.5%);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  }
+
+  .flap {
+    position: absolute;
+    top: -4px; left: -4px;
+    width: 240px; height: 150px;
+    background: #f5a9a1;
+    border: 4px solid #d94b5c;
+    clip-path: polygon(0 0, 100% 0, 50% 65%);
+    z-index: 2;
+    transition: transform 0.8s ease;
+    transform-origin: top;
+  }
+
+  .open .flap { transform: rotateX(180deg); }
+
+  .envelope-heart {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    color: #d94b5c;
+    z-index: 1;
+    animation: pulse 1.5s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+  }
+
+  .landing-text {
+    margin-top: 25px;
+    font-size: 10px;
+    color: var(--text-color);
+    text-align: center;
+  }
+
+  .envelope-container:hover .landing-text { animation: bounce 0.6s infinite; }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+
+  #letter { display: none; opacity: 0; transition: opacity 0.8s ease; }
+
+  .window {
+    background: white;
+    border: 4px solid var(--text-color);
+    width: 85vw;
+    max-width: 400px;
+    padding: 30px 15px;
+    text-align: center;
+    box-shadow: 10px 10px 0 var(--secondary-pink);
+    position: relative;
+  }
+
+  .window-title {
+    position: absolute;
+    top: -15px; left: 20px;
+    background: var(--primary-red);
+    color: white;
+    padding: 5px 10px;
+    font-size: 10px;
+    border: 3px solid var(--text-color);
+  }
+
+  .question { font-size: 10px; line-height: 1.8; color: var(--text-color); margin-top: 10px; }
+
+  .buttons { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
+
+  .pixel-btn {
+    font-family: "Press Start 2P", cursive;
+    font-size: 10px;
+    padding: 12px 20px;
+    border: 3px solid var(--text-color);
+    background: white;
+    box-shadow: 4px 4px 0 var(--text-color);
+    cursor: pointer;
+  }
+
+  #yes { background: var(--secondary-pink); }
+
+  .final-message {
+    display: none;
+    font-size: 9px;
+    line-height: 1.8;
+    color: var(--dark-pink);
+    text-align: center;
+    animation: fadeIn 1s ease;
+  }
+
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  .shake { animation: shake 0.4s; }
+  @keyframes shake {
+    0%, 100% { transform: translate(0,0); }
+    25% { transform: translate(-8px, 0); }
+    75% { transform: translate(8px, 0); }
+  }
+</style>
+</head>
+
+<body>
+
+<div id="landing" class="screen">
+  <div class="envelope-container" onclick="openEnvelope(this)">
+    <div class="envelope">
+      <div class="flap"></div>
+      <div class="envelope-heart">♥</div>
+    </div>
+    <div class="landing-text">💖 ♡ Letter For Mitali ♡ 💖</div>
+  </div>
+</div>
+
+<div id="letter" class="screen">
+  <div class="window">
+    <div class="window-title">MESSAGE.EXE</div>
+
+    <div id="content-wrap">
+      <div class="question">
+        Will you be my Valentine<br>
+        & my life partner, baby?
+      </div>
+
+      <div class="media-container">
+        <video class="pixel-video" autoplay loop muted playsinline>
+          <source src="our_video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <div class="buttons">
+        <button class="pixel-btn" id="yes" onclick="sayYes()">YES</button>
+        <button class="pixel-btn" id="no" onmouseover="moveNo()" onclick="moveNo()">NO</button>
+      </div>
+    </div>
+
+    <div class="final-message" id="finalMsg">
+      💖 YAY!! 💖<br><br>
+      Happy 6th Anniversary, baby. I know things haven't been the same lately, 
+      and I truly miss the way we used to be.<br><br>
+      I’m holding onto the hope that we can find our way back to that version of us.<br><br>
+      You’re still my life partner, and I love you more than ever.
+    </div>
+  </div>
+</div>
+
+<script>
+  function createHearts(count) {
+    for (let i = 0; i < count; i++) {
+      const h = document.createElement("div");
+      h.className = "heart";
+      h.textContent = "♥";
+      h.style.left = Math.random() * 100 + "vw";
+      h.style.animationDuration = (3 + Math.random() * 3) + "s";
+      h.style.animationDelay = Math.random() * 5 + "s";
+      document.body.appendChild(h);
+    }
+  }
+
+  createHearts(25);
+
+  function openEnvelope(el) {
+    el.classList.add("open");
+    setTimeout(() => {
+      document.getElementById("landing").style.display = "none";
+      const letter = document.getElementById("letter");
+      letter.style.display = "flex";
+      setTimeout(() => letter.style.opacity = "1", 50);
+    }, 1000);
+  }
+
+  function moveNo() {
+    const no = document.getElementById("no");
+    const x = Math.random() * 160 - 80;
+    const y = Math.random() * 100 - 50;
+    no.style.transform = `translate(${x}px, ${y}px)`;
+  }
+
+  function sayYes() {
+    const windowEl = document.querySelector(".window");
+    windowEl.classList.add("shake");
+    createHearts(60);
+
+    setTimeout(() => {
+      document.getElementById("content-wrap").style.display = "none";
+      document.getElementById("finalMsg").style.display = "block";
+      windowEl.classList.remove("shake");
+    }, 400);
+  }
+</script>
+
+</body>
+</html>
